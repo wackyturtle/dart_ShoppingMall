@@ -3,6 +3,7 @@ import 'package:dart_application_1/dart_application_1.dart'
 import 'dart:io';
 import 'package:collection/collection.dart';
 
+//제품 클래스
 class Product {
   final String name;
   final int price;
@@ -10,6 +11,7 @@ class Product {
   Product(this.name, this.price);
 }
 
+//쇼핑몰 클래스(제품 리스트, 카트 리스트)
 class ShoppingMall {
   final List<Product> products;
   final List<String> cartItems = [];
@@ -18,12 +20,14 @@ class ShoppingMall {
   ShoppingMall(this.products);
 
   void showProducts() {
+    //제품목록 보기 함수
     for (Product product in products) {
       print('${product.name} / ${product.price}원');
     }
   }
 
   void addToCart() {
+    //카트에 담는 함수
     stdout.write('상품 이름을 입력하세요: ');
     final nameInput = stdin.readLineSync();
     Product? product;
@@ -50,7 +54,7 @@ class ShoppingMall {
         return;
       }
     } catch (_) {
-      print('입력값이 올바르지 않아요 !');
+      print("입력값이 올바르지 않아요 !");
       return;
     }
 
@@ -62,16 +66,18 @@ class ShoppingMall {
   }
 
   void showTotal() {
+    //총 가격 함수
     if (cartItems.isEmpty) {
       print('장바구니에 담긴 상품이 없습니다.');
     } else {
       final distinct = cartItems.toSet().toList();
       final names = distinct.join(', ');
-      print('장바구니에 $names 가 담겨있네요. 총 ${total}원 입니다!');
+      print('장바구니에 $names 가 담겨있습니다. 총 ${total}원 입니다!');
     }
   }
 
   void clearCart() {
+    // 카트 초기화 함수
     if (cartItems.isEmpty) {
       print('이미 장바구니가 비어있습니다.');
     } else {
